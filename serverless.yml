@@ -1,0 +1,113 @@
+org: johan1
+app: Quiztopia
+service: Quiztopia
+
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [${self:custom.tables.UsersTable}, Arn]
+            - Fn::GetAtt: [${self:custom.tables.QuizzesTable}, Arn]
+            - Fn::GetAtt: [${self:custom.tables.LeaderboardTable}, Arn]
+  environment:
+    DYNAMODB_USERS_TABLE: ${self:custom.tables.UsersTable}
+    DYNAMODB_QUIZZES_TABLE: ${self:custom.tables.QuizzesTable}
+    DYNAMODB_LEADERBOARD_TABLE: ${self:custom.tables.LeaderboardTable}
+    JWT_SECRET: potatis
+
+custom:
+  tables:
+    UsersTable: "UsersTable-${sls:stage}"
+    QuizzesTable: "QuizzesTable-${sls:stage}"
+    LeaderboardTable: "LeaderboardTable-${sls:stage}"
+
+package:
+  individually: true
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi:
+          path: /register
+          method: POST
+      - httpApi:
+          path: /login
+          method: POST
+      - httpApi:
+          path: /quizzes
+          method: GET
+      - httpApi:
+          path: /quizzes
+          method: POST
+      - httpApi:
+          path: /quizzes/{quizId}
+          method: GET
+      - httpApi:
+          path: /quizzes/{quizId}/questions
+          method: POST
+      - httpApi:
+          path: /quizzes/{quizId}
+          method: DELETE
+      - httpApi:
+          path: /quizzes/{quizId}/score
+          method: POST
+      - httpApi:
+          path: /quizzes/{quizId}/leaderboard
+          method: GET
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tables.UsersTable}
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    QuizzesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tables.QuizzesTable}
+        AttributeDefinitions:
+          - AttributeName: quizId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: quizId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    LeaderboardTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tables.LeaderboardTable}
+        AttributeDefinitions:
+          - AttributeName: quizId
+            AttributeType: S
+          - AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: quizId
+            KeyType: HASH
+          - AttributeName: userId
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST

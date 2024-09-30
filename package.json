@@ -1,0 +1,19 @@
+{
+  "name": "quiztopia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.658.1",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "middy": "^0.36.0",
+    "uuid": "^10.0.0"
+  }
+}

@@ -4,7 +4,14 @@ import { unmarshall } from "@aws-sdk/util-dynamodb";
 const dynamoDB = new DynamoDBClient({ region: "eu-north-1" });
 
 export const getQuiz = async (event) => {
-  const quizId = event.pathParameters.id;
+  const { quizId } = event.pathParameters;
+
+  if (!quizId) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: "Quiz ID saknas." }),
+    };
+  }
 
   const params = {
     TableName: "QuizzesTable-dev",
@@ -36,6 +43,7 @@ export const getQuiz = async (event) => {
     };
   } catch (error) {
     console.error("Error fetching quiz:", error);
+    console.error("Received event:", JSON.stringify(event));
 
     return {
       statusCode: 500,

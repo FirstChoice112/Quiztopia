@@ -109,7 +109,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-          "S3Key": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z/api.zip"
+          "S3Key": "serverless/quiztopia/dev/1727803036546-2024-10-01T17:17:16.546Z/api.zip"
         },
         "Handler": "handler.handler",
         "Runtime": "nodejs20.x",
@@ -135,14 +135,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY": {
+    "ApiLambdaVersionmxegz7MDKtvFSohttH2atmFngsIgFWEqwm5qR0Af9lA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "sV4up+sw93axI7FvvWzh2QKqO/QbJVmUGfYG0bZ4w8M="
+        "CodeSha256": "WuMq/zBtwjx8yI0LGlEyfbbiznrNUgu+PJ80oIYYlmo="
       }
     },
     "ApiGatewayRestApi": {
@@ -664,7 +664,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1727787182150": {
+    "ApiGatewayDeployment1727803032297": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -815,7 +815,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
+        "Ref": "ApiLambdaVersionmxegz7MDKtvFSohttH2atmFngsIgFWEqwm5qR0Af9lA"
       },
       "Export": {
         "Name": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"

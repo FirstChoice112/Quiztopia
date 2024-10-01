@@ -9,12 +9,15 @@ export const handler = async (event) => {
     return registerUser(event);
   } else if (httpMethod === "POST" && path === "/login") {
     return loginUser(event);
-  } else if (httpMethod === "GET" && path.startsWith("/quizzes")) {
-    if (pathParameters && pathParameters.quizId) {
+  } else if (httpMethod === "GET" && path.startsWith("/quizzes/")) {
+    // Kontrollera om quizId finns i pathParameters
+    const quizId = pathParameters?.quizId;
+
+    if (quizId) {
       // Hämta specifikt quiz
       return getQuiz(event);
     } else {
-      // Hantera fall där inga `quizId` ges, om nödvändigt
+      // Hantera fall där inga `quizId` ges
       return {
         statusCode: 400,
         body: JSON.stringify({ message: "Quiz ID saknas." }),

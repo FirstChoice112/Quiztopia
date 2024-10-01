@@ -31,7 +31,8 @@
                         "dynamodb:GetItem",
                         "dynamodb:PutItem",
                         "dynamodb:UpdateItem",
-                        "dynamodb:DeleteItem"
+                        "dynamodb:DeleteItem",
+                        "dynamodb:BatchWriteItem"
                       ],
                       "Resource": [
                         "arn:aws:dynamodb:eu-north-1:*:table/UsersTable-dev",
@@ -126,7 +127,8 @@
                                   "dynamodb:GetItem",
                                   "dynamodb:PutItem",
                                   "dynamodb:UpdateItem",
-                                  "dynamodb:DeleteItem"
+                                  "dynamodb:DeleteItem",
+                                  "dynamodb:BatchWriteItem"
                                 ],
                                 "Resource": [
                                   "arn:aws:dynamodb:eu-north-1:*:table/UsersTable-dev",
@@ -160,7 +162,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-                        "S3Key": "serverless/quiztopia/dev/1727768091336-2024-10-01T07:34:51.336Z/api.zip"
+                        "S3Key": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z/api.zip"
                       },
                       "Handler": "handler.handler",
                       "Runtime": "nodejs20.x",
@@ -186,14 +188,14 @@
                       "ApiLogGroup"
                     ]
                   },
-                  "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo": {
+                  "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "ApiLambdaFunction"
                       },
-                      "CodeSha256": "llirGil5W22qzgR4IQEqO8QHwC46W/HbHQo0P4Ze3cY="
+                      "CodeSha256": "sV4up+sw93axI7FvvWzh2QKqO/QbJVmUGfYG0bZ4w8M="
                     }
                   },
                   "ApiGatewayRestApi": {
@@ -715,7 +717,7 @@
                       "ApiLambdaPermissionApiGateway"
                     ]
                   },
-                  "ApiGatewayDeployment1727768086424": {
+                  "ApiGatewayDeployment1727787182150": {
                     "Type": "AWS::ApiGateway::Deployment",
                     "Properties": {
                       "RestApiId": {
@@ -866,7 +868,7 @@
                   "ApiLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo"
+                      "Ref": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
                     },
                     "Export": {
                       "Name": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"
@@ -916,7 +918,7 @@
               ],
               "artifactsS3KeyDirname": "serverless/quiztopia/dev/code-artifacts",
               "deploymentBucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-              "artifactDirectoryName": "serverless/quiztopia/dev/1727768091336-2024-10-01T07:34:51.336Z"
+              "artifactDirectoryName": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z"
             },
             "functions": {
               "api": {
@@ -994,7 +996,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo"
+                "versionLogicalId": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
               }
             },
             "resources": {
@@ -1126,7 +1128,8 @@
                         "dynamodb:GetItem",
                         "dynamodb:PutItem",
                         "dynamodb:UpdateItem",
-                        "dynamodb:DeleteItem"
+                        "dynamodb:DeleteItem",
+                        "dynamodb:BatchWriteItem"
                       ],
                       "Resource": [
                         "arn:aws:dynamodb:eu-north-1:*:table/UsersTable-dev",
@@ -1221,7 +1224,8 @@
                                   "dynamodb:GetItem",
                                   "dynamodb:PutItem",
                                   "dynamodb:UpdateItem",
-                                  "dynamodb:DeleteItem"
+                                  "dynamodb:DeleteItem",
+                                  "dynamodb:BatchWriteItem"
                                 ],
                                 "Resource": [
                                   "arn:aws:dynamodb:eu-north-1:*:table/UsersTable-dev",
@@ -1255,7 +1259,7 @@
                     "Properties": {
                       "Code": {
                         "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-                        "S3Key": "serverless/quiztopia/dev/1727768091336-2024-10-01T07:34:51.336Z/api.zip"
+                        "S3Key": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z/api.zip"
                       },
                       "Handler": "handler.handler",
                       "Runtime": "nodejs20.x",
@@ -1281,14 +1285,14 @@
                       "ApiLogGroup"
                     ]
                   },
-                  "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo": {
+                  "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY": {
                     "Type": "AWS::Lambda::Version",
                     "DeletionPolicy": "Retain",
                     "Properties": {
                       "FunctionName": {
                         "Ref": "ApiLambdaFunction"
                       },
-                      "CodeSha256": "llirGil5W22qzgR4IQEqO8QHwC46W/HbHQo0P4Ze3cY="
+                      "CodeSha256": "sV4up+sw93axI7FvvWzh2QKqO/QbJVmUGfYG0bZ4w8M="
                     }
                   },
                   "ApiGatewayRestApi": {
@@ -1810,7 +1814,7 @@
                       "ApiLambdaPermissionApiGateway"
                     ]
                   },
-                  "ApiGatewayDeployment1727768086424": {
+                  "ApiGatewayDeployment1727787182150": {
                     "Type": "AWS::ApiGateway::Deployment",
                     "Properties": {
                       "RestApiId": {
@@ -1961,7 +1965,7 @@
                   "ApiLambdaFunctionQualifiedArn": {
                     "Description": "Current Lambda function version",
                     "Value": {
-                      "Ref": "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo"
+                      "Ref": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
                     },
                     "Export": {
                       "Name": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"
@@ -2011,7 +2015,7 @@
               ],
               "artifactsS3KeyDirname": "serverless/quiztopia/dev/code-artifacts",
               "deploymentBucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-              "artifactDirectoryName": "serverless/quiztopia/dev/1727768091336-2024-10-01T07:34:51.336Z"
+              "artifactDirectoryName": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z"
             },
             "functions": {
               "api": {
@@ -2089,7 +2093,7 @@
                 "timeout": 6,
                 "runtime": "nodejs20.x",
                 "vpc": {},
-                "versionLogicalId": "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo"
+                "versionLogicalId": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
               }
             },
             "resources": {
@@ -2222,7 +2226,8 @@
                   "dynamodb:GetItem",
                   "dynamodb:PutItem",
                   "dynamodb:UpdateItem",
-                  "dynamodb:DeleteItem"
+                  "dynamodb:DeleteItem",
+                  "dynamodb:BatchWriteItem"
                 ],
                 "Resource": [
                   "arn:aws:dynamodb:eu-north-1:*:table/UsersTable-dev",
@@ -2317,7 +2322,8 @@
                             "dynamodb:GetItem",
                             "dynamodb:PutItem",
                             "dynamodb:UpdateItem",
-                            "dynamodb:DeleteItem"
+                            "dynamodb:DeleteItem",
+                            "dynamodb:BatchWriteItem"
                           ],
                           "Resource": [
                             "arn:aws:dynamodb:eu-north-1:*:table/UsersTable-dev",
@@ -2351,7 +2357,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-                  "S3Key": "serverless/quiztopia/dev/1727768091336-2024-10-01T07:34:51.336Z/api.zip"
+                  "S3Key": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z/api.zip"
                 },
                 "Handler": "handler.handler",
                 "Runtime": "nodejs20.x",
@@ -2377,14 +2383,14 @@
                 "ApiLogGroup"
               ]
             },
-            "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo": {
+            "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ApiLambdaFunction"
                 },
-                "CodeSha256": "llirGil5W22qzgR4IQEqO8QHwC46W/HbHQo0P4Ze3cY="
+                "CodeSha256": "sV4up+sw93axI7FvvWzh2QKqO/QbJVmUGfYG0bZ4w8M="
               }
             },
             "ApiGatewayRestApi": {
@@ -2906,7 +2912,7 @@
                 "ApiLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1727768086424": {
+            "ApiGatewayDeployment1727787182150": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -3057,7 +3063,7 @@
             "ApiLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo"
+                "Ref": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
               },
               "Export": {
                 "Name": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"
@@ -3107,7 +3113,7 @@
         ],
         "artifactsS3KeyDirname": "serverless/quiztopia/dev/code-artifacts",
         "deploymentBucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-        "artifactDirectoryName": "serverless/quiztopia/dev/1727768091336-2024-10-01T07:34:51.336Z"
+        "artifactDirectoryName": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z"
       },
       "functions": {
         "api": {
@@ -3185,7 +3191,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo"
+          "versionLogicalId": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
         }
       },
       "resources": {
@@ -3277,7 +3283,7 @@
         "Outputs": {}
       }
     },
-    "serviceRawFile": "org: johan1\r\napp: quiztopia\r\nservice: quiztopia\r\n\r\nframeworkVersion: \"4\"\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  stage: dev\r\n  region: eu-north-1\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: Allow\r\n          Action:\r\n            - dynamodb:Query\r\n            - dynamodb:Scan\r\n            - dynamodb:GetItem\r\n            - dynamodb:PutItem\r\n            - dynamodb:UpdateItem\r\n            - dynamodb:DeleteItem\r\n          Resource:\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.UsersTable}\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.UsersTable}/index/UsernameIndex\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.QuizzesTable}\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.LeaderboardTable}\r\n\r\n  environment:\r\n    DYNAMODB_USERS_TABLE: ${self:custom.tables.UsersTable}\r\n    DYNAMODB_QUIZZES_TABLE: ${self:custom.tables.QuizzesTable}\r\n    DYNAMODB_LEADERBOARD_TABLE: ${self:custom.tables.LeaderboardTable}\r\n    JWT_SECRET: potatis\r\n\r\ncustom:\r\n  tables:\r\n    UsersTable: \"UsersTable-${sls:stage}\"\r\n    QuizzesTable: \"QuizzesTable-${sls:stage}\"\r\n    LeaderboardTable: \"LeaderboardTable-${sls:stage}\"\r\n\r\npackage:\r\n  individually: true\r\n  include:\r\n    - handlers/**\r\n\r\nfunctions:\r\n  api:\r\n    handler: handler.handler\r\n    events:\r\n      - http:\r\n          path: /register\r\n          method: POST\r\n      - http:\r\n          path: /login\r\n          method: POST\r\n      - http:\r\n          path: /quizzes\r\n          method: GET\r\n      - http:\r\n          path: /quizzes\r\n          method: POST\r\n      - http:\r\n          path: /quizzes/{quizId}\r\n          method: GET\r\n      - http:\r\n          path: /quizzes/{quizId}/questions\r\n          method: POST\r\n      - http:\r\n          path: /quizzes/{quizId}\r\n          method: DELETE\r\n      - http:\r\n          path: /quizzes/{quizId}/score\r\n          method: POST\r\n      - http:\r\n          path: /quizzes/{quizId}/leaderboard\r\n          method: GET\r\n\r\nresources:\r\n  Resources:\r\n    UsersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: ${self:custom.tables.UsersTable}\r\n        AttributeDefinitions:\r\n          - AttributeName: userId\r\n            AttributeType: S\r\n          - AttributeName: username\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: userId\r\n            KeyType: HASH\r\n        GlobalSecondaryIndexes:\r\n          - IndexName: UsernameIndex # Skapa GSI för username\r\n            KeySchema:\r\n              - AttributeName: username\r\n                KeyType: HASH # username är HASH-nyckeln för GSI\r\n            Projection:\r\n              ProjectionType: ALL # Returnera alla attribut i GSI-resultat\r\n        BillingMode: PAY_PER_REQUEST\r\n\r\n    QuizzesTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: ${self:custom.tables.QuizzesTable}\r\n        AttributeDefinitions:\r\n          - AttributeName: quizId\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: quizId\r\n            KeyType: HASH\r\n        BillingMode: PAY_PER_REQUEST\r\n\r\n    LeaderboardTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: ${self:custom.tables.LeaderboardTable}\r\n        AttributeDefinitions:\r\n          - AttributeName: quizId\r\n            AttributeType: S\r\n          - AttributeName: userId\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: quizId\r\n            KeyType: HASH\r\n          - AttributeName: userId\r\n            KeyType: RANGE\r\n        BillingMode: PAY_PER_REQUEST\r\n",
+    "serviceRawFile": "org: johan1\r\napp: quiztopia\r\nservice: quiztopia\r\n\r\nframeworkVersion: \"4\"\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  stage: dev\r\n  region: eu-north-1\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: Allow\r\n          Action:\r\n            - dynamodb:Query\r\n            - dynamodb:Scan\r\n            - dynamodb:GetItem\r\n            - dynamodb:PutItem\r\n            - dynamodb:UpdateItem\r\n            - dynamodb:DeleteItem\r\n            - dynamodb:BatchWriteItem\r\n          Resource:\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.UsersTable}\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.UsersTable}/index/UsernameIndex\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.QuizzesTable}\r\n            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.LeaderboardTable}\r\n\r\n  environment:\r\n    DYNAMODB_USERS_TABLE: ${self:custom.tables.UsersTable}\r\n    DYNAMODB_QUIZZES_TABLE: ${self:custom.tables.QuizzesTable}\r\n    DYNAMODB_LEADERBOARD_TABLE: ${self:custom.tables.LeaderboardTable}\r\n    JWT_SECRET: potatis\r\n\r\ncustom:\r\n  tables:\r\n    UsersTable: \"UsersTable-${sls:stage}\"\r\n    QuizzesTable: \"QuizzesTable-${sls:stage}\"\r\n    LeaderboardTable: \"LeaderboardTable-${sls:stage}\"\r\n\r\npackage:\r\n  individually: true\r\n  include:\r\n    - handlers/**\r\n\r\nfunctions:\r\n  api:\r\n    handler: handler.handler\r\n    events:\r\n      - http:\r\n          path: /register\r\n          method: POST\r\n      - http:\r\n          path: /login\r\n          method: POST\r\n      - http:\r\n          path: /quizzes\r\n          method: GET\r\n      - http:\r\n          path: /quizzes\r\n          method: POST\r\n      - http:\r\n          path: /quizzes/{quizId}\r\n          method: GET\r\n      - http:\r\n          path: /quizzes/{quizId}/questions\r\n          method: POST\r\n      - http:\r\n          path: /quizzes/{quizId}\r\n          method: DELETE\r\n      - http:\r\n          path: /quizzes/{quizId}/score\r\n          method: POST\r\n      - http:\r\n          path: /quizzes/{quizId}/leaderboard\r\n          method: GET\r\n\r\nresources:\r\n  Resources:\r\n    UsersTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: ${self:custom.tables.UsersTable}\r\n        AttributeDefinitions:\r\n          - AttributeName: userId\r\n            AttributeType: S\r\n          - AttributeName: username\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: userId\r\n            KeyType: HASH\r\n        GlobalSecondaryIndexes:\r\n          - IndexName: UsernameIndex # Skapa GSI för username\r\n            KeySchema:\r\n              - AttributeName: username\r\n                KeyType: HASH # username är HASH-nyckeln för GSI\r\n            Projection:\r\n              ProjectionType: ALL # Returnera alla attribut i GSI-resultat\r\n        BillingMode: PAY_PER_REQUEST\r\n\r\n    QuizzesTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: ${self:custom.tables.QuizzesTable}\r\n        AttributeDefinitions:\r\n          - AttributeName: quizId\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: quizId\r\n            KeyType: HASH\r\n        BillingMode: PAY_PER_REQUEST\r\n\r\n    LeaderboardTable:\r\n      Type: AWS::DynamoDB::Table\r\n      Properties:\r\n        TableName: ${self:custom.tables.LeaderboardTable}\r\n        AttributeDefinitions:\r\n          - AttributeName: quizId\r\n            AttributeType: S\r\n          - AttributeName: userId\r\n            AttributeType: S\r\n        KeySchema:\r\n          - AttributeName: quizId\r\n            KeyType: HASH\r\n          - AttributeName: userId\r\n            KeyType: RANGE\r\n        BillingMode: PAY_PER_REQUEST\r\n",
     "command": [
       "deploy"
     ],
@@ -3316,12 +3322,12 @@
     "serviceUniqueId": "arn:aws:cloudformation:eu-north-1:503561443116:stack/quiztopia-dev/a70747a0-7f53-11ef-bcc8-0aa5367ada69",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-north-1:503561443116:stack/quiztopia-dev/a70747a0-7f53-11ef-bcc8-0aa5367ada69",
     "serviceProviderAwsCfStackCreated": "2024-09-30T17:44:33.440Z",
-    "serviceProviderAwsCfStackUpdated": "2024-10-01T07:34:57.635Z",
+    "serviceProviderAwsCfStackUpdated": "2024-10-01T12:53:13.980Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "ApiLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-north-1:503561443116:function:quiztopia-dev-api:14",
+        "OutputValue": "arn:aws:lambda:eu-north-1:503561443116:function:quiztopia-dev-api:16",
         "Description": "Current Lambda function version",
         "ExportName": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"
       },

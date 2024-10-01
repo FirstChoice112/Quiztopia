@@ -74,7 +74,8 @@
                     "dynamodb:GetItem",
                     "dynamodb:PutItem",
                     "dynamodb:UpdateItem",
-                    "dynamodb:DeleteItem"
+                    "dynamodb:DeleteItem",
+                    "dynamodb:BatchWriteItem"
                   ],
                   "Resource": [
                     "arn:aws:dynamodb:eu-north-1:*:table/UsersTable-dev",
@@ -108,7 +109,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-          "S3Key": "serverless/quiztopia/dev/1727768091336-2024-10-01T07:34:51.336Z/api.zip"
+          "S3Key": "serverless/quiztopia/dev/1727787186838-2024-10-01T12:53:06.838Z/api.zip"
         },
         "Handler": "handler.handler",
         "Runtime": "nodejs20.x",
@@ -134,14 +135,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo": {
+    "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "llirGil5W22qzgR4IQEqO8QHwC46W/HbHQo0P4Ze3cY="
+        "CodeSha256": "sV4up+sw93axI7FvvWzh2QKqO/QbJVmUGfYG0bZ4w8M="
       }
     },
     "ApiGatewayRestApi": {
@@ -663,7 +664,7 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1727768086424": {
+    "ApiGatewayDeployment1727787182150": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -814,7 +815,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionnGNe331irZY0dYIxts186Ro1tSwnp0hfXdKsW6tztJo"
+        "Ref": "ApiLambdaVersionpqOlYrUJXZPncExEUOsqD4JQQuVQ9kk4LSG1IOIY"
       },
       "Export": {
         "Name": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"

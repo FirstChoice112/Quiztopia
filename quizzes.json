@@ -1,0 +1,82 @@
+[
+  {
+    "quizId": "1",
+    "userId": "user1",
+    "quizName": "Göteborgs Historia Quiz",
+    "userName": "John Doe",
+    "questions": [
+      {
+        "question": "Vilket år grundades Göteborg?",
+        "answer": "1621",
+        "location": {
+          "longitude": "11.9746",
+          "latitude": "57.7072"
+        }
+      }
+    ]
+  },
+  {
+    "quizId": "2",
+    "userId": "user2",
+    "quizName": "Göteborgs Sevärdheter Quiz",
+    "userName": "Jane Smith",
+    "questions": [
+      {
+        "question": "Vilken är den mest kända parken i Göteborg?",
+        "answer": "Slottsskogen",
+        "location": {
+          "longitude": "11.9664",
+          "latitude": "57.6944"
+        }
+      }
+    ]
+  },
+  {
+    "quizId": "3",
+    "userId": "user3",
+    "quizName": "Göteborgs Kultur Quiz",
+    "userName": "Alice Johnson",
+    "questions": [
+      {
+        "question": "Vilket museum i Göteborg är känt för sin konstsamling?",
+        "answer": "Konstmuseum",
+        "location": {
+          "longitude": "11.9790",
+          "latitude": "57.7010"
+        }
+      }
+    ]
+  },
+  {
+    "quizId": "4",
+    "userId": "user4",
+    "quizName": "Göteborgs Mat Quiz",
+    "userName": "Bob Brown",
+    "questions": [
+      {
+        "question": "Vad kallas den berömda räksmörgåsen från Göteborg?",
+        "answer": "Räkmacka",
+        "location": {
+          "longitude": "11.9731",
+          "latitude": "57.7089"
+        }
+      }
+    ]
+  },
+  {
+    "quizId": "5",
+    "userId": "user5",
+    "quizName": "Göteborgs Idrott Quiz",
+    "userName": "Emily Davis",
+    "questions": [
+      {
+        "question": "Vilken fotbollsklubb från Göteborg är känd för sina framgångar?",
+        "answer": "IFK Göteborg",
+        "location": {
+          "longitude": "11.9720",
+          "latitude": "57.6948"
+        }
+      }
+    ]
+  }
+]

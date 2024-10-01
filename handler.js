@@ -1,13 +1,25 @@
 import { registerUser } from "./src/register.js";
 import { loginUser } from "./src/login.js";
+import { getQuiz } from "./quizzes/getQuiz.js";
 
 export const handler = async (event) => {
-  const { path, httpMethod } = event;
+  const { path, httpMethod, pathParameters } = event;
 
   if (httpMethod === "POST" && path === "/register") {
     return registerUser(event);
   } else if (httpMethod === "POST" && path === "/login") {
     return loginUser(event);
+  } else if (httpMethod === "GET" && path.startsWith("/quizzes")) {
+    if (pathParameters && pathParameters.quizId) {
+      // Hämta specifikt quiz
+      return getQuiz(event);
+    } else {
+      // Hantera fall där inga `quizId` ges, om nödvändigt
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: "Quiz ID saknas." }),
+      };
+    }
   } else {
     return {
       statusCode: 404,

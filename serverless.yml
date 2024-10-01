@@ -1,12 +1,13 @@
 org: johan1
-app: Quiztopia
-service: Quiztopia
+app: quiztopia
+service: quiztopia
 
 frameworkVersion: "4"
 
 provider:
   name: aws
   runtime: nodejs20.x
+  stage: dev
   region: eu-north-1
   iam:
     role:
@@ -20,9 +21,11 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource:
-            - Fn::GetAtt: [${self:custom.tables.UsersTable}, Arn]
-            - Fn::GetAtt: [${self:custom.tables.QuizzesTable}, Arn]
-            - Fn::GetAtt: [${self:custom.tables.LeaderboardTable}, Arn]
+            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.UsersTable}
+            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.UsersTable}/index/UsernameIndex
+            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.QuizzesTable}
+            - arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.tables.LeaderboardTable}
+
   environment:
     DYNAMODB_USERS_TABLE: ${self:custom.tables.UsersTable}
     DYNAMODB_QUIZZES_TABLE: ${self:custom.tables.QuizzesTable}
@@ -37,36 +40,38 @@ custom:
 
 package:
   individually: true
+  include:
+    - handlers/**
 
 functions:
   api:
     handler: handler.handler
     events:
-      - httpApi:
+      - http:
           path: /register
           method: POST
-      - httpApi:
+      - http:
           path: /login
           method: POST
-      - httpApi:
+      - http:
           path: /quizzes
           method: GET
-      - httpApi:
+      - http:
           path: /quizzes
           method: POST
-      - httpApi:
+      - http:
           path: /quizzes/{quizId}
           method: GET
-      - httpApi:
+      - http:
           path: /quizzes/{quizId}/questions
           method: POST
-      - httpApi:
+      - http:
           path: /quizzes/{quizId}
           method: DELETE
-      - httpApi:
+      - http:
           path: /quizzes/{quizId}/score
           method: POST
-      - httpApi:
+      - http:
           path: /quizzes/{quizId}/leaderboard
           method: GET
 
@@ -79,9 +84,18 @@ resources:
         AttributeDefinitions:
           - AttributeName: userId
             AttributeType: S
+          - AttributeName: username
+            AttributeType: S
         KeySchema:
           - AttributeName: userId
             KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: UsernameIndex # Skapa GSI för username
+            KeySchema:
+              - AttributeName: username
+                KeyType: HASH # username är HASH-nyckeln för GSI
+            Projection:
+              ProjectionType: ALL # Returnera alla attribut i GSI-resultat
         BillingMode: PAY_PER_REQUEST
 
     QuizzesTable:

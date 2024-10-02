@@ -1,6 +1,7 @@
 import { registerUser } from "./src/register.js";
 import { loginUser } from "./src/login.js";
 import { getQuiz } from "./quizzes/getQuiz.js";
+import { getAllQuizzes } from "./quizzes/getAllQuizzes.js";
 
 export const handler = async (event) => {
   const { path, httpMethod, pathParameters } = event;
@@ -9,6 +10,9 @@ export const handler = async (event) => {
     return registerUser(event);
   } else if (httpMethod === "POST" && path === "/login") {
     return loginUser(event);
+  } else if (httpMethod === "GET" && path === "/quizzes") {
+    // Hämta alla quizzes
+    return getAllQuizzes();
   } else if (httpMethod === "GET" && path.startsWith("/quizzes/")) {
     // Kontrollera om quizId finns i pathParameters
     const quizId = pathParameters?.quizId;

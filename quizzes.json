@@ -12,6 +12,22 @@
           "longitude": "11.9746",
           "latitude": "57.7072"
         }
+      },
+      {
+        "question": "Vad är namnet på kanalen som går genom centrala Göteborg och skapades tidigt i stadens historia?",
+        "answer": "Göta älv",
+        "location": {
+          "longitude": "11.9746",
+          "latitude": "57.7072"
+        }
+      },
+      {
+        "question": "Vilken byggnad i centrala Göteborg var ursprungligen ett försvarsverk och nu ett museum?",
+        "answer": "Skansen Kronan",
+        "location": {
+          "longitude": "11.9746",
+          "latitude": "57.7072"
+        }
       }
     ]
   },
@@ -24,6 +40,22 @@
       {
         "question": "Vilken är den mest kända parken i Göteborg?",
         "answer": "Slottsskogen",
+        "location": {
+          "longitude": "11.9664",
+          "latitude": "57.6944"
+        }
+      },
+      {
+        "question": "Vilket populärt djurparkområde kan besökare hitta i Slottsskogen?",
+        "answer": "Barnens Zoo",
+        "location": {
+          "longitude": "11.9664",
+          "latitude": "57.6944"
+        }
+      },
+      {
+        "question": "Vad heter den stora utsiktsplatsen i Slottsskogen där man kan få en panoramavy över staden?",
+        "answer": "Observatoriet",
         "location": {
           "longitude": "11.9664",
           "latitude": "57.6944"
@@ -44,6 +76,22 @@
           "longitude": "11.9790",
           "latitude": "57.7010"
         }
+      },
+      {
+        "question": "Vad heter teatern i närheten av Konstmuseum där många föreställningar hålls?",
+        "answer": "Göteborgs Stadsteater",
+        "location": {
+          "longitude": "11.9790",
+          "latitude": "57.7010"
+        }
+      },
+      {
+        "question": "Vilken berömd gata nära Konstmuseum är känd för sina många restauranger och kaféer?",
+        "answer": "Avenyn",
+        "location": {
+          "longitude": "11.9790",
+          "latitude": "57.7010"
+        }
       }
     ]
   },
@@ -60,6 +108,22 @@
           "longitude": "11.9731",
           "latitude": "57.7089"
         }
+      },
+      {
+        "question": "Vilken välkänd saluhall i Göteborg är ett populärt ställe att handla skaldjur?",
+        "answer": "Feskekôrka",
+        "location": {
+          "longitude": "11.9731",
+          "latitude": "57.7089"
+        }
+      },
+      {
+        "question": "Vilken årlig matfestival i Göteborg firar stadens kulinariska kultur?",
+        "answer": "Göteborgs Smaka på Världen",
+        "location": {
+          "longitude": "11.9731",
+          "latitude": "57.7089"
+        }
       }
     ]
   },
@@ -72,6 +136,22 @@
       {
         "question": "Vilken fotbollsklubb från Göteborg är känd för sina framgångar?",
         "answer": "IFK Göteborg",
+        "location": {
+          "longitude": "11.9720",
+          "latitude": "57.6948"
+        }
+      },
+      {
+        "question": "Vilken arena är hemmaplan för IFK Göteborg?",
+        "answer": "Gamla Ullevi",
+        "location": {
+          "longitude": "11.9720",
+          "latitude": "57.6948"
+        }
+      },
+      {
+        "question": "Vilken stor sportevenemang hålls regelbundet i Göteborg och lockar idrottare från hela världen?",
+        "answer": "Göteborgsvarvet",
         "location": {
           "longitude": "11.9720",
           "latitude": "57.6948"

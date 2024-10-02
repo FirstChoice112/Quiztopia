@@ -34,11 +34,16 @@ export const getQuiz = async (event) => {
 
     const quiz = unmarshall(result.Item);
 
+    const questions = quiz.questions.map(({ question }) => ({
+      question, // Behåll bara själva frågan
+    }));
+
     return {
       statusCode: 200,
       body: JSON.stringify({
-        quizId: quiz.quizId,
-        questions: quiz.questions,
+        quizName: quiz.quizName,
+        userName: quiz.userName,
+        questions,
       }),
     };
   } catch (error) {

@@ -46,9 +46,13 @@ const loginUser = async (event) => {
       };
     }
 
-    const token = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { userId: user.userId, username: user.username },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
 
     return {
       statusCode: 200,

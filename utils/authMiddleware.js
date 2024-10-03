@@ -23,7 +23,6 @@ dotenv.config();
 const validateToken = {
   before: async (req) => {
     try {
-      console.log("Event object:=======>", req.event);
       const authHeader =
         req.event.headers.authorization || req.event.headers.Authorization;
 
@@ -31,11 +30,10 @@ const validateToken = {
 
       const token = authHeader.replace("Bearer ", "");
 
-      console.log("Token:=========>", token);
-
       const data = jwt.verify(token, process.env.JWT_SECRET);
 
       req.event.userId = data.userId;
+      req.event.userName = data.username;
 
       console.log("UserId from token:=====>", req.event.userId);
 

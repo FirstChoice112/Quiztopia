@@ -5,6 +5,7 @@ export const createQuiz = async (event) => {
   console.log("Received event in createQuiz:", JSON.stringify(event, null, 2));
   try {
     const userId = event.userId;
+    const userName = event.userName;
 
     if (!userId) {
       return {
@@ -41,6 +42,7 @@ export const createQuiz = async (event) => {
 
     const quizData = {
       userId,
+      userName,
       quizId: newQuizId.toString(), // Om du vill behålla det som sträng
       quizName: title,
       questions,

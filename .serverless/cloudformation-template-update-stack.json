@@ -115,7 +115,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-          "S3Key": "serverless/quiztopia/dev/1727940511364-2024-10-03T07:28:31.364Z/api.zip"
+          "S3Key": "serverless/quiztopia/dev/1727947090930-2024-10-03T09:18:10.930Z/api.zip"
         },
         "Handler": "handler.main",
         "Runtime": "nodejs20.x",
@@ -145,7 +145,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-          "S3Key": "serverless/quiztopia/dev/1727940511364-2024-10-03T07:28:31.364Z/authApi.zip"
+          "S3Key": "serverless/quiztopia/dev/1727947090930-2024-10-03T09:18:10.930Z/authApi.zip"
         },
         "Handler": "handler.authHandler",
         "Runtime": "nodejs20.x",
@@ -170,24 +170,24 @@
         "AuthApiLogGroup"
       ]
     },
-    "ApiLambdaVersionMtJm25hWClAvklzLpznjDrO3Ft2E4qh9yW2cV2UMrPo": {
+    "ApiLambdaVersionDc6pLSbcK52qeigJjvloaaBEIwdav12wx7hmUsQyY": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "ZlYJOOOljJ9vvAT7srzkEfkmDnl8Pi1oWbltI0XA+cI="
+        "CodeSha256": "YGjVsbLV7+srQ1ilCFLw0frSISO6HxkaPgQnn9Ycz5E="
       }
     },
-    "AuthApiLambdaVersionNjn0odkiZQfQROJGFRoqV1skBrZEmMFu5xac5hyGg": {
+    "AuthApiLambdaVersion1wHYGOsq3PzhMWeizayXUF35boUPMqU8xbCTWlItTjs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AuthApiLambdaFunction"
         },
-        "CodeSha256": "ZlYJOOOljJ9vvAT7srzkEfkmDnl8Pi1oWbltI0XA+cI="
+        "CodeSha256": "YGjVsbLV7+srQ1ilCFLw0frSISO6HxkaPgQnn9Ycz5E="
       }
     },
     "ApiGatewayRestApi": {
@@ -709,7 +709,7 @@
         "AuthApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1727940506621": {
+    "ApiGatewayDeployment1727947085048": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -905,7 +905,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionMtJm25hWClAvklzLpznjDrO3Ft2E4qh9yW2cV2UMrPo"
+        "Ref": "ApiLambdaVersionDc6pLSbcK52qeigJjvloaaBEIwdav12wx7hmUsQyY"
       },
       "Export": {
         "Name": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"
@@ -914,7 +914,7 @@
     "AuthApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AuthApiLambdaVersionNjn0odkiZQfQROJGFRoqV1skBrZEmMFu5xac5hyGg"
+        "Ref": "AuthApiLambdaVersion1wHYGOsq3PzhMWeizayXUF35boUPMqU8xbCTWlItTjs"
       },
       "Export": {
         "Name": "sls-quiztopia-dev-AuthApiLambdaFunctionQualifiedArn"

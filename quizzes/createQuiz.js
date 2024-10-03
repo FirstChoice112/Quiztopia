@@ -1,10 +1,9 @@
 import { docClient } from "../utils/db.js";
-import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
+import { PutCommand, ScanCommand } from "@aws-sdk/lib-dynamodb";
 
 export const createQuiz = async (event) => {
   console.log("Received event in createQuiz:", JSON.stringify(event, null, 2));
   try {
-    // Hämta userId från event
     const userId = event.userId;
 
     if (!userId) {
@@ -14,7 +13,6 @@ export const createQuiz = async (event) => {
       };
     }
 
-    // Fortsätt med quiz-skapande logiken
     const { title, questions } = JSON.parse(event.body);
 
     if (!title || !questions || !Array.isArray(questions)) {
@@ -26,28 +24,24 @@ export const createQuiz = async (event) => {
       };
     }
 
-    // Hämta högsta quizId för att generera nästa quizId
-    const highestQuizIdParams = {
+    // Hämta alla quiz för att bestämma högsta quizId
+    const scanParams = {
       TableName: "QuizzesTable-dev",
-      KeyConditionExpression: "userId = :userId",
-      ExpressionAttributeValues: {
-        ":userId": userId,
-      },
-      Limit: 1,
-      ScanIndexForward: false,
     };
 
-    const highestQuizIdResult = new QueryCommand(highestQuizIdParams);
-    const result = await docClient.send(highestQuizIdResult);
+    const scanCommand = new ScanCommand(scanParams);
+    const scanResult = await docClient.send(scanCommand);
 
-    let newQuizId = 1;
-    if (result.Items.length > 0) {
-      newQuizId = parseInt(result.Items[0].quizId) + 1;
+    let newQuizId = 1; // Standardvärde om inga quiz hittas
+    if (scanResult.Items.length > 0) {
+      // Hämta högsta quizId och inkrementera
+      const quizIds = scanResult.Items.map((item) => parseInt(item.quizId, 10));
+      newQuizId = Math.max(...quizIds) + 1; // Öka med 1 av det högsta quizId
     }
 
     const quizData = {
       userId,
-      quizId: newQuizId.toString(),
+      quizId: newQuizId.toString(), // Om du vill behålla det som sträng
       quizName: title,
       questions,
     };

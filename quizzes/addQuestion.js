@@ -1,30 +1,67 @@
-import { docClient, UpdateCommand } from "../utils/db.js";
-
+import { docClient, GetCommand, UpdateCommand } from "../utils/db.js";
 export const addQuestionToQuiz = async (event) => {
   const { quizId } = event.pathParameters;
-  const { question, answer, coordinates, userId } = JSON.parse(event.body);
+  const { userId, question, answer, coordinates } = JSON.parse(event.body);
 
-  const params = {
+  // Hämta quizet från DynamoDB
+  const getParams = {
     TableName: "QuizzesTable-dev",
-    Key: { userId, quizId },
-    UpdateExpression: "SET questions = list_append(questions, :newQuestion)",
-    ExpressionAttributeValues: {
-      ":newQuestion": [
-        {
-          question,
-          answer,
-          coordinates: {
-            longitude: coordinates.longitude,
-            latitude: coordinates.latitude,
-          },
-        },
-      ],
+    Key: {
+      userId, // Använd userId från begäran
+      quizId,
     },
-    ReturnValues: "UPDATED_NEW",
   };
 
   try {
-    const result = await docClient.send(new UpdateCommand(params));
+    const quizData = await docClient.send(new GetCommand(getParams));
+
+    // Kontrollera att quizet finns
+    if (!quizData.Item) {
+      return {
+        statusCode: 404,
+        body: JSON.stringify({
+          message: "Quiz not found or you don't have permission to edit it 🛑",
+        }),
+      };
+    }
+
+    // Kontrollera att userId i quizet matchar det skickade userId
+    if (quizData.Item.userId !== userId) {
+      return {
+        statusCode: 403,
+        body: JSON.stringify({
+          message: "You are not allowed to edit this quiz 🛑",
+        }),
+      };
+    }
+
+    // Lägg till frågan i quizet
+    const updateParams = {
+      TableName: "QuizzesTable-dev",
+      Key: {
+        userId,
+        quizId,
+      },
+      UpdateExpression:
+        "SET questions = list_append(if_not_exists(questions, :emptyList), :newQuestion)",
+      ExpressionAttributeValues: {
+        ":emptyList": [],
+        ":newQuestion": [
+          {
+            question,
+            answer,
+            coordinates: {
+              longitude: coordinates.longitude,
+              latitude: coordinates.latitude,
+            },
+          },
+        ],
+      },
+      ReturnValues: "UPDATED_NEW",
+    };
+
+    const result = await docClient.send(new UpdateCommand(updateParams));
+
     return {
       statusCode: 200,
       body: JSON.stringify({
@@ -33,6 +70,7 @@ export const addQuestionToQuiz = async (event) => {
       }),
     };
   } catch (error) {
+    console.error("Error adding question:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Error adding question 🤥", error }),

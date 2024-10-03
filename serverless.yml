@@ -66,9 +66,6 @@ functions:
           path: /quizzes
           method: POST
       - http:
-          path: /quizzes/{quizId}/questions
-          method: POST
-      - http:
           path: /quizzes/{quizId}
           method: DELETE
       - http:
@@ -77,6 +74,12 @@ functions:
       - http:
           path: /quizzes/{quizId}/leaderboard
           method: GET
+  addQuestion:
+    handler: handler.addQuestion
+    events:
+      - http:
+          path: /quizzes/{quizId}/questions
+          method: POST
 
 resources:
   Resources:

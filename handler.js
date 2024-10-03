@@ -1,9 +1,13 @@
+import middy from "@middy/core";
 import { registerUser } from "./src/register.js";
 import { loginUser } from "./src/login.js";
 import { getQuiz } from "./quizzes/getQuiz.js";
 import { getAllQuizzes } from "./quizzes/getAllQuizzes.js";
+import { createQuiz } from "./quizzes/createQuiz.js";
+import { validateToken } from "./utils/authMiddleware.js";
 
-export const handler = async (event) => {
+// Gemensam handler för gamla endpoints
+const handler = async (event) => {
   const { path, httpMethod, pathParameters } = event;
 
   if (httpMethod === "POST" && path === "/register") {
@@ -11,22 +15,21 @@ export const handler = async (event) => {
   } else if (httpMethod === "POST" && path === "/login") {
     return loginUser(event);
   } else if (httpMethod === "GET" && path === "/quizzes") {
-    // Hämta alla quizzes
     return getAllQuizzes();
   } else if (httpMethod === "GET" && path.startsWith("/quizzes/")) {
-    // Kontrollera om quizId finns i pathParameters
     const quizId = pathParameters?.quizId;
 
     if (quizId) {
-      // Hämta specifikt quiz
       return getQuiz(event);
     } else {
-      // Hantera fall där inga `quizId` ges
       return {
         statusCode: 400,
         body: JSON.stringify({ message: "Quiz ID saknas." }),
       };
     }
+  } else if (httpMethod === "POST" && path === "/quizzes") {
+    // För nya endpoints med auth, returnera en 404 om det är en gammal endpoint
+    return authHandler(event);
   } else {
     return {
       statusCode: 404,
@@ -34,3 +37,12 @@ export const handler = async (event) => {
     };
   }
 };
+
+// Ny handler för createQuiz med Middy
+const createQuizHandler = async (event) => {
+  return createQuiz(event);
+};
+
+// Exportera en separat handler med Middy för specifika endpoints
+export const main = handler; // För gamla endpoints
+export const authHandler = middy(createQuizHandler).use(validateToken); // För nya endpoints

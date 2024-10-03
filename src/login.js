@@ -16,7 +16,7 @@ const loginUser = async (event) => {
   }
 
   const params = {
-    TableName: process.env.DYNAMODB_USERS_TABLE,
+    TableName: "UsersTable-dev",
     IndexName: "UsernameIndex",
     KeyConditionExpression: "username = :username",
     ExpressionAttributeValues: {
@@ -46,7 +46,7 @@ const loginUser = async (event) => {
       };
     }
 
-    const token = jwt.sign({ userId: Items.userId }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ userId: user.userId }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
 

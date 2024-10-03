@@ -31,7 +31,6 @@ provider:
     DYNAMODB_USERS_TABLE: ${self:custom.tables.UsersTable}
     DYNAMODB_QUIZZES_TABLE: ${self:custom.tables.QuizzesTable}
     DYNAMODB_LEADERBOARD_TABLE: ${self:custom.tables.LeaderboardTable}
-    JWT_SECRET: potatis
 
 custom:
   tables:
@@ -46,7 +45,7 @@ package:
 
 functions:
   api:
-    handler: handler.handler
+    handler: handler.main
     events:
       - http:
           path: /register
@@ -58,11 +57,14 @@ functions:
           path: /quizzes
           method: GET
       - http:
-          path: /quizzes
-          method: POST
-      - http:
           path: /quizzes/{quizId}
           method: GET
+  authApi:
+    handler: handler.authHandler
+    events:
+      - http:
+          path: /quizzes
+          method: POST
       - http:
           path: /quizzes/{quizId}/questions
           method: POST
@@ -106,9 +108,13 @@ resources:
         AttributeDefinitions:
           - AttributeName: quizId
             AttributeType: S
+          - AttributeName: userId
+            AttributeType: S # Lägg till userId som en attributdefinition
         KeySchema:
-          - AttributeName: quizId
+          - AttributeName: userId # Använd userId som HASH-nyckeln
             KeyType: HASH
+          - AttributeName: quizId
+            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
 
     LeaderboardTable:

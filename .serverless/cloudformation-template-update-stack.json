@@ -8,6 +8,12 @@
         "LogGroupName": "/aws/lambda/quiztopia-dev-api"
       }
     },
+    "AuthApiLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/quiztopia-dev-authApi"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -109,9 +115,9 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
-          "S3Key": "serverless/quiztopia/dev/1727854365290-2024-10-02T07:32:45.290Z/api.zip"
+          "S3Key": "serverless/quiztopia/dev/1727940511364-2024-10-03T07:28:31.364Z/api.zip"
         },
-        "Handler": "handler.handler",
+        "Handler": "handler.main",
         "Runtime": "nodejs20.x",
         "FunctionName": "quiztopia-dev-api",
         "MemorySize": 1024,
@@ -120,8 +126,7 @@
           "Variables": {
             "DYNAMODB_USERS_TABLE": "UsersTable-dev",
             "DYNAMODB_QUIZZES_TABLE": "QuizzesTable-dev",
-            "DYNAMODB_LEADERBOARD_TABLE": "LeaderboardTable-dev",
-            "JWT_SECRET": "potatis"
+            "DYNAMODB_LEADERBOARD_TABLE": "LeaderboardTable-dev"
           }
         },
         "Role": {
@@ -135,14 +140,54 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionaZdak08CzuLML1TAh5YOS4cxWu1i3MCRLSmq5Uq1E": {
+    "AuthApiLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "serverless-framework-deployments-eu-north-1-a60f574d-0a13",
+          "S3Key": "serverless/quiztopia/dev/1727940511364-2024-10-03T07:28:31.364Z/authApi.zip"
+        },
+        "Handler": "handler.authHandler",
+        "Runtime": "nodejs20.x",
+        "FunctionName": "quiztopia-dev-authApi",
+        "MemorySize": 1024,
+        "Timeout": 6,
+        "Environment": {
+          "Variables": {
+            "DYNAMODB_USERS_TABLE": "UsersTable-dev",
+            "DYNAMODB_QUIZZES_TABLE": "QuizzesTable-dev",
+            "DYNAMODB_LEADERBOARD_TABLE": "LeaderboardTable-dev"
+          }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "AuthApiLogGroup"
+      ]
+    },
+    "ApiLambdaVersionMtJm25hWClAvklzLpznjDrO3Ft2E4qh9yW2cV2UMrPo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "2E2gkoxefkondY+Hnb6EKlXqXLAIDUe+Y5IsCnqcw0E="
+        "CodeSha256": "ZlYJOOOljJ9vvAT7srzkEfkmDnl8Pi1oWbltI0XA+cI="
+      }
+    },
+    "AuthApiLambdaVersionNjn0odkiZQfQROJGFRoqV1skBrZEmMFu5xac5hyGg": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AuthApiLambdaFunction"
+        },
+        "CodeSha256": "ZlYJOOOljJ9vvAT7srzkEfkmDnl8Pi1oWbltI0XA+cI="
       }
     },
     "ApiGatewayRestApi": {
@@ -388,52 +433,6 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayMethodQuizzesPost": {
-      "Type": "AWS::ApiGateway::Method",
-      "Properties": {
-        "HttpMethod": "POST",
-        "RequestParameters": {},
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceQuizzes"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        },
-        "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
-        "Integration": {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
-                {
-                  "Fn::GetAtt": [
-                    "ApiLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "/invocations"
-              ]
-            ]
-          }
-        },
-        "MethodResponses": []
-      },
-      "DependsOn": [
-        "ApiLambdaPermissionApiGateway"
-      ]
-    },
     "ApiGatewayMethodQuizzesQuizidVarGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -480,6 +479,52 @@
         "ApiLambdaPermissionApiGateway"
       ]
     },
+    "ApiGatewayMethodQuizzesPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceQuizzes"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "AuthApiLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      },
+      "DependsOn": [
+        "AuthApiLambdaPermissionApiGateway"
+      ]
+    },
     "ApiGatewayMethodQuizzesQuizidVarQuestionsPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -511,7 +556,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "ApiLambdaFunction",
+                    "AuthApiLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -523,7 +568,7 @@
         "MethodResponses": []
       },
       "DependsOn": [
-        "ApiLambdaPermissionApiGateway"
+        "AuthApiLambdaPermissionApiGateway"
       ]
     },
     "ApiGatewayMethodQuizzesQuizidVarDelete": {
@@ -557,7 +602,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "ApiLambdaFunction",
+                    "AuthApiLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -569,7 +614,7 @@
         "MethodResponses": []
       },
       "DependsOn": [
-        "ApiLambdaPermissionApiGateway"
+        "AuthApiLambdaPermissionApiGateway"
       ]
     },
     "ApiGatewayMethodQuizzesQuizidVarScorePost": {
@@ -603,7 +648,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "ApiLambdaFunction",
+                    "AuthApiLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -615,7 +660,7 @@
         "MethodResponses": []
       },
       "DependsOn": [
-        "ApiLambdaPermissionApiGateway"
+        "AuthApiLambdaPermissionApiGateway"
       ]
     },
     "ApiGatewayMethodQuizzesQuizidVarLeaderboardGet": {
@@ -649,7 +694,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "ApiLambdaFunction",
+                    "AuthApiLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -661,10 +706,10 @@
         "MethodResponses": []
       },
       "DependsOn": [
-        "ApiLambdaPermissionApiGateway"
+        "AuthApiLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1727854359912": {
+    "ApiGatewayDeployment1727940506621": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -676,8 +721,8 @@
         "ApiGatewayMethodRegisterPost",
         "ApiGatewayMethodLoginPost",
         "ApiGatewayMethodQuizzesGet",
-        "ApiGatewayMethodQuizzesPost",
         "ApiGatewayMethodQuizzesQuizidVarGet",
+        "ApiGatewayMethodQuizzesPost",
         "ApiGatewayMethodQuizzesQuizidVarQuestionsPost",
         "ApiGatewayMethodQuizzesQuizidVarDelete",
         "ApiGatewayMethodQuizzesQuizidVarScorePost",
@@ -690,6 +735,43 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "ApiLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "AuthApiLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AuthApiLambdaFunction",
             "Arn"
           ]
         },
@@ -766,12 +848,20 @@
           {
             "AttributeName": "quizId",
             "AttributeType": "S"
+          },
+          {
+            "AttributeName": "userId",
+            "AttributeType": "S"
           }
         ],
         "KeySchema": [
           {
-            "AttributeName": "quizId",
+            "AttributeName": "userId",
             "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "quizId",
+            "KeyType": "RANGE"
           }
         ],
         "BillingMode": "PAY_PER_REQUEST"
@@ -815,10 +905,19 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionaZdak08CzuLML1TAh5YOS4cxWu1i3MCRLSmq5Uq1E"
+        "Ref": "ApiLambdaVersionMtJm25hWClAvklzLpznjDrO3Ft2E4qh9yW2cV2UMrPo"
       },
       "Export": {
         "Name": "sls-quiztopia-dev-ApiLambdaFunctionQualifiedArn"
+      }
+    },
+    "AuthApiLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AuthApiLambdaVersionNjn0odkiZQfQROJGFRoqV1skBrZEmMFu5xac5hyGg"
+      },
+      "Export": {
+        "Name": "sls-quiztopia-dev-AuthApiLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {

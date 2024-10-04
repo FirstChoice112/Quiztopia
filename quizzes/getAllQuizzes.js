@@ -32,7 +32,7 @@ export const getAllQuizzes = async () => {
       body: JSON.stringify({ quizzes }),
     };
   } catch (err) {
-    console.error("Error fetching quizes:", err);
+    console.error("Error fetching quizes 🤥:", err);
     return {
       statusCode: 500,
       body: JSON.stringify({

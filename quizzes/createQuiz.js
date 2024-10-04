@@ -10,7 +10,7 @@ export const createQuiz = async (event) => {
     if (!userId) {
       return {
         statusCode: 401,
-        body: JSON.stringify({ message: "UserId saknas, obehörig" }),
+        body: JSON.stringify({ message: "UserId missing, unauthorized 🛑" }),
       };
     }
 
@@ -20,7 +20,7 @@ export const createQuiz = async (event) => {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          message: "Title och questions är obligatoriska",
+          message: "Title and questions are required 🤥",
         }),
       };
     }
@@ -32,18 +32,18 @@ export const createQuiz = async (event) => {
 
     const scanCommand = new ScanCommand(scanParams);
     const scanResult = await docClient.send(scanCommand);
-
-    let newQuizId = 1; // Standardvärde om inga quiz hittas
+    // Standardvärde om inga quiz hittas
+    let newQuizId = 1;
     if (scanResult.Items.length > 0) {
       // Hämta högsta quizId och inkrementera
       const quizIds = scanResult.Items.map((item) => parseInt(item.quizId, 10));
-      newQuizId = Math.max(...quizIds) + 1; // Öka med 1 av det högsta quizId
+      newQuizId = Math.max(...quizIds) + 1;
     }
 
     const quizData = {
       userId,
       userName,
-      quizId: newQuizId.toString(), // Om du vill behålla det som sträng
+      quizId: newQuizId.toString(), // konvertera till sträng
       quizName: title,
       questions,
     };
@@ -59,12 +59,12 @@ export const createQuiz = async (event) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: "Quiz skapat framgångsrikt 😊",
+        message: "Quiz created successfully 😊",
         quizId: quizData.quizId,
       }),
     };
   } catch (err) {
-    console.error("Error creating quiz:", err);
+    console.error("Error creating quiz 😶‍🌫️:", err);
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Kunde inte skapa quiz 🥲" }),

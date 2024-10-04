@@ -80,7 +80,12 @@ functions:
       - http:
           path: /quizzes/{quizId}/questions
           method: POST
-
+  deleteQuiz:
+    handler: handler.deleteQuiz
+    events:
+      - http:
+          path: /quizzes/{quizId}
+          method: DELETE
 resources:
   Resources:
     UsersTable:
@@ -96,12 +101,12 @@ resources:
           - AttributeName: userId
             KeyType: HASH
         GlobalSecondaryIndexes:
-          - IndexName: UsernameIndex # Skapa GSI för username
+          - IndexName: UsernameIndex
             KeySchema:
               - AttributeName: username
-                KeyType: HASH # username är HASH-nyckeln för GSI
+                KeyType: HASH
             Projection:
-              ProjectionType: ALL # Returnera alla attribut i GSI-resultat
+              ProjectionType: ALL
         BillingMode: PAY_PER_REQUEST
 
     QuizzesTable:
@@ -112,9 +117,9 @@ resources:
           - AttributeName: quizId
             AttributeType: S
           - AttributeName: userId
-            AttributeType: S # Lägg till userId som en attributdefinition
+            AttributeType: S
         KeySchema:
-          - AttributeName: userId # Använd userId som HASH-nyckeln
+          - AttributeName: userId
             KeyType: HASH
           - AttributeName: quizId
             KeyType: RANGE

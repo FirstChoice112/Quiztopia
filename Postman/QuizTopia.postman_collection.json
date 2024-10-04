@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "4519d76c-c6fd-4b55-b45a-fdc5f1b71e9c",
+		"name": "QuizTopia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33948174"
+	},
+	"item": [
+		{
+			"name": "Register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"user2\",\r\n  \"password\": \"user2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://n78haosocj.execute-api.eu-north-1.amazonaws.com/dev/register",
+					"protocol": "https",
+					"host": [
+						"n78haosocj",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"user3\",\r\n  \"password\": \"user3\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://n78haosocj.execute-api.eu-north-1.amazonaws.com/dev/login",
+					"protocol": "https",
+					"host": [
+						"n78haosocj",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get specifik Quiz",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://n78haosocj.execute-api.eu-north-1.amazonaws.com/dev/quizzes/2",
+					"protocol": "https",
+					"host": [
+						"n78haosocj",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"quizzes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all quizzes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://hn7838a4aj.execute-api.eu-north-1.amazonaws.com/dev/quizzes",
+					"protocol": "https",
+					"host": [
+						"hn7838a4aj",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Quiz",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5ZGU4NDU3ZS1mZWM4LTQwZTYtOGJkOC1jM2M4YWIzODg1MTAiLCJpYXQiOjE3Mjc5NDA1NjAsImV4cCI6MTcyNzk0NDE2MH0.VdZ9oIvgB8f9tg3cT4B6nxsD-reHb8vKkvciA-1HJ1w",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Göteborgs Quiz\",\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"Vad heter Göteborgs största arena?\",\r\n      \"options\": [\"Ullevi\", \"Liseberg\", \" Scandinavium\", \"Frölundaborg\"],\r\n      \"answer\": \"Ullevi\"\r\n    },\r\n    {\r\n      \"question\": \"Vilken flod rinner genom Göteborg?\",\r\n      \"options\": [\"Göta älv\", \"Ume älv\", \"Lule älv\", \"Mälaren\"],\r\n      \"answer\": \"Göta älv\"\r\n    },\r\n    {\r\n      \"question\": \"Vilket år grundades Göteborg?\",\r\n      \"options\": [\"1621\", \"1631\", \"1641\", \"1651\"],\r\n      \"answer\": \"1621\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://n78haosocj.execute-api.eu-north-1.amazonaws.com/dev/quizzes",
+					"protocol": "https",
+					"host": [
+						"n78haosocj",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post New Question",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwODcwZjUwNy0wZGVjLTRmOWItYjBlZS0yZTc4MGVhM2FiNDgiLCJ1c2VybmFtZSI6InVzZXI4IiwiaWF0IjoxNzI3OTc5OTM1LCJleHAiOjE3Mjc5ODM1MzV9.8wjPiekPawr4Malxy6Jy-Xldv-hOtB6zcJlKjextVhE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"userId\": \"0870f507-0dec-4f9b-b0ee-2e780ea3ab48\",\r\n  \"question\": \"Vad är huvudstaden i Sverige?\",\r\n  \"answer\": \"Stockholm\",\r\n  \"coordinates\": {\r\n    \"longitude\": 18.0686,\r\n    \"latitude\": 59.3293\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://n78haosocj.execute-api.eu-north-1.amazonaws.com/dev/quizzes/3/questions",
+					"protocol": "https",
+					"host": [
+						"n78haosocj",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"quizzes",
+						"3",
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Quiz",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwODcwZjUwNy0wZGVjLTRmOWItYjBlZS0yZTc4MGVhM2FiNDgiLCJ1c2VybmFtZSI6InVzZXI4IiwiaWF0IjoxNzI3OTkwMjcxLCJleHAiOjE3Mjc5OTM4NzF9.aBT2nBF1xe1HvviNY2bfZizPvs8fwQcuWdTrqoqdSOw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\": \"0870f507-0dec-4f9b-b0ee-2e780ea3ab48\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://n78haosocj.execute-api.eu-north-1.amazonaws.com/dev/quizzes/4",
+					"protocol": "https",
+					"host": [
+						"n78haosocj",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"quizzes",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

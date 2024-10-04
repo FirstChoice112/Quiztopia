@@ -10,7 +10,7 @@ const loginUser = async (event) => {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: "Username and password is required",
+        message: "Username and password is required 🤥",
       }),
     };
   }

@@ -7,7 +7,7 @@ export const addQuestionToQuiz = async (event) => {
   const getParams = {
     TableName: "QuizzesTable-dev",
     Key: {
-      userId, // Använd userId från begäran
+      userId,
       quizId,
     },
   };
@@ -15,7 +15,6 @@ export const addQuestionToQuiz = async (event) => {
   try {
     const quizData = await docClient.send(new GetCommand(getParams));
 
-    // Kontrollera att quizet finns
     if (!quizData.Item) {
       return {
         statusCode: 404,
@@ -56,6 +55,7 @@ export const addQuestionToQuiz = async (event) => {
             },
           },
         ],
+        s,
       },
       ReturnValues: "UPDATED_NEW",
     };

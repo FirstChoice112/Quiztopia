@@ -8,7 +8,7 @@ const validateToken = {
       const authHeader =
         req.event.headers.authorization || req.event.headers.Authorization;
 
-      if (!authHeader) throw new Error("No token provided");
+      if (!authHeader) throw new Error("No token provided 🤥");
 
       const token = authHeader.replace("Bearer ", "");
 
@@ -17,12 +17,9 @@ const validateToken = {
       req.event.userId = data.userId;
       req.event.userName = data.username;
 
-      console.log("UserId from token:=====>", req.event.userId);
-
       return req.response;
     } catch (error) {
-      console.error("Token verification failed:", error.message);
-      throw new Error("Unauthorized");
+      throw new Error("Unauthorized 🛑");
     }
   },
 };

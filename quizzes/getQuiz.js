@@ -9,7 +9,7 @@ export const getQuiz = async (event) => {
   if (!quizId) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ message: "Quiz ID saknas." }),
+      body: JSON.stringify({ message: "Quiz ID missing 🤥." }),
     };
   }
 
@@ -35,7 +35,7 @@ export const getQuiz = async (event) => {
     const quiz = unmarshall(result.Item);
 
     const questions = quiz.questions.map(({ question }) => ({
-      question, // Behåll bara själva frågan
+      question,
     }));
 
     return {
@@ -47,9 +47,6 @@ export const getQuiz = async (event) => {
       }),
     };
   } catch (error) {
-    console.error("Error fetching quiz:", error);
-    console.error("Received event:", JSON.stringify(event));
-
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Internal server error 😶‍🌫️" }),

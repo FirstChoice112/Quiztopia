@@ -10,13 +10,12 @@ const registerUser = async (event) => {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: "Missing username and password is required",
+        message: "Missing username and password is required 🤥",
       }),
     };
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-
   const userId = uuidv4();
 
   const params = {
@@ -29,22 +28,20 @@ const registerUser = async (event) => {
   };
 
   try {
-    console.log("Attempting to register user:", { userId, username });
     const command = new PutCommand(params);
     await docClient.send(command);
-    console.log("User registered successfully");
+
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: "User registered successfully",
+        message: "User registered successfully 😊",
       }),
     };
   } catch (error) {
-    console.error("Error registering user:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: "Error registering user",
+        message: "Error registering user 😶‍🌫️",
       }),
     };
   }
